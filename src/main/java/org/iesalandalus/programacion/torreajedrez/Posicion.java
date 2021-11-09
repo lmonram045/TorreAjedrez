@@ -31,7 +31,7 @@ public class Posicion {
         }
     }
 
-    /** getter columna */
+    /** getter columna  */
     public char getColumna() {
         return columna;
     }
