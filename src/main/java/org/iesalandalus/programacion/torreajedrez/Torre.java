@@ -11,6 +11,19 @@ public class Torre {
         posicion = new Posicion(8, 'h');
     }
 
+    // Constructor con parámetro color
+    public Torre(Color color) {
+        if (color == Color.BLANCO) {
+            posicion = new Posicion(1, 'h');
+        } else if (color == Color.NEGRO) {
+            posicion = new Posicion(8, 'h');
+        }
+        if (color == null) {
+            throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
+        }
+        this.color = color;
+    }
+
     // ------------------------ Getters y Setters -----------------------------------------------------------------
     private void setPosicion(Posicion posicion) {
         this.posicion = posicion;
