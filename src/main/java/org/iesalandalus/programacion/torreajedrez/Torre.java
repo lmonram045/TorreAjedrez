@@ -54,45 +54,64 @@ public class Torre {
         }
 
         Posicion posicionDestino;
+        // Ya que la torre solo cambia de columna o de fila, creo las siguientes variables
         int filaDestino;
+        int fila;
+        char columna;
         char columnaDestino;
         try {
             switch (direccion) {
                 case ARRIBA:
                     filaDestino = this.posicion.getFila();
-                    columnaDestino = this.posicion.getColumna();
-
+                    columna = this.posicion.getColumna();
+                    // Controlo la fila hacia arriba para controlar que no se sale
                     for (int i = 1; i <= pasos; i++) {
-                        columnaDestino++;
+                        if (filaDestino < 8) {
+                            filaDestino++;
+                        } else {
+                            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                        }
                     }
-                    posicionDestino = new Posicion(filaDestino, columnaDestino);
+                    posicionDestino = new Posicion(filaDestino, columna);
                     break;
                 case ABAJO:
                     filaDestino = this.posicion.getFila();
-                    columnaDestino = this.posicion.getColumna();
-
+                    columna = this.posicion.getColumna();
+                    // Controlo la fila hacia abajo para controlar que no se sale
                     for (int i = 1; i <= pasos; i++) {
-                        columnaDestino--;
+                        if (filaDestino > 1) {
+                            filaDestino--;
+                        } else {
+                            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                        }
                     }
-                    posicionDestino = new Posicion(filaDestino, columnaDestino);
+                    posicionDestino = new Posicion(filaDestino, columna);
                     break;
                 case DERECHA:
-                    filaDestino = this.posicion.getFila();
+                    fila = this.posicion.getFila();
                     columnaDestino = this.posicion.getColumna();
-
+                    // Controlo la columna hacia la derecha para controlar que no se sale
                     for (int i = 1; i <= pasos; i++) {
-                        filaDestino++;
+                        if (columnaDestino < 'h') {
+                            columnaDestino++;
+                        } else {
+                            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                        }
                     }
-                    posicionDestino = new Posicion(filaDestino, columnaDestino);
+                    posicionDestino = new Posicion(fila, columnaDestino);
                     break;
                 case IZQUIERDA:
-                    filaDestino = this.posicion.getFila();
+                    fila = this.posicion.getFila();
                     columnaDestino = this.posicion.getColumna();
-
+                    // Controlo la columna hacia la izquierda para controlar que no se salga
                     for (int i = 1; i <= pasos; i++) {
-                        filaDestino--;
+                        if (columnaDestino > 'a') {
+                            columnaDestino--;
+                        } else {
+                            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                        }
                     }
-                    posicionDestino = new Posicion(filaDestino, columnaDestino);
+                    posicionDestino = new Posicion(fila, columnaDestino);
                     break;
                 /*case ENROQUE_CORTO:
                     filaDestino = this.posicion.getFila();
@@ -121,6 +140,13 @@ public class Torre {
         this.setPosicion(posicionDestino);
     }
 
+    /** Método enrocar */
+    public void enrocar(Direccion direccion) {
+        if (direccion == null) {
+            throw new NullPointerException("ERROR: La dirección no puede ser nula.");
+        }
+
+    }
     // ------------------------ Getters y Setters -----------------------------------------------------------------
     private void setPosicion(Posicion posicion) {
         this.posicion = posicion;
