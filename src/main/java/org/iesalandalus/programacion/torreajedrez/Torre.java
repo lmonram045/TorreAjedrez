@@ -94,7 +94,7 @@ public class Torre {
                     }
                     posicionDestino = new Posicion(filaDestino, columnaDestino);
                     break;
-                case ENROQUE_CORTO:
+                /*case ENROQUE_CORTO:
                     filaDestino = this.posicion.getFila();
                     columnaDestino = 'f';
                     if (filaDestino == 1 || filaDestino == 8) {
@@ -111,7 +111,7 @@ public class Torre {
                     } else {
                         throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
                     }
-                    break;
+                    break;*/
                 default:
                     throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
             }
