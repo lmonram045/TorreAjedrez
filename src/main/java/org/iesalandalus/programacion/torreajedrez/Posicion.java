@@ -4,6 +4,12 @@ public class Posicion {
     private int fila;
     private char columna;
 
+    //constructor
+    public Posicion (int fila, char columna) {
+        setFila(fila);
+        setColumna(columna);
+    }
+
     /** setter fila */
     private void setFila(int fila) {
         if (fila < 1 || fila > 8) {
