@@ -4,10 +4,19 @@ public class Posicion {
     private int fila;
     private char columna;
 
-    //constructor
+    /** constructor */
     public Posicion (int fila, char columna) {
         setFila(fila);
         setColumna(columna);
+    }
+
+    /** constructor copia */
+    public Posicion(Posicion posicion) {
+        if (posicion == null) {
+            throw new NullPointerException("ERROR: No es posible copiar una posición nula.");
+        }
+        setFila(posicion.getFila());
+        setColumna(posicion.getColumna());
     }
 
     /** setter fila */
