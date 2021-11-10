@@ -5,13 +5,13 @@ public class Torre {
     private Color color;
     private Posicion posicion;
 
-    // Constructor por defecto
+    /** Constructor por defecto */
     public Torre() {
         color = Color.NEGRO;
         posicion = new Posicion(8, 'h');
     }
 
-    // Constructor con parámetro color
+    /** Constructor con parámetro color */
     public Torre(Color color) {
         if (color == Color.BLANCO) {
             posicion = new Posicion(1, 'h');
@@ -20,6 +20,25 @@ public class Torre {
         }
         if (color == null) {
             throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
+        }
+        this.color = color;
+    }
+
+    /** Constructor con parámetro color y columna */
+    public Torre(Color color, char columna) {
+        if (color == null) {
+            throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
+        }
+
+        if (columna != 'a' && columna != 'h') {
+            throw new IllegalArgumentException("ERROR: Columna no válida.");
+        }
+
+        if (color == Color.BLANCO) {
+            posicion = new Posicion(1, columna);
+        }
+        if (color == Color.NEGRO) {
+            posicion = new Posicion(8, columna);
         }
         this.color = color;
     }
