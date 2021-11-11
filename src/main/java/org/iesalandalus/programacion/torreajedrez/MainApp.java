@@ -90,6 +90,15 @@ public class MainApp {
 		System.out.println("||=============================================||");
 	}
 
+	private static int elegirDireccion() {
+		int opcion;
+		do {
+			System.out.print(" Elija una opción: ");
+			opcion = Entrada.entero();
+		} while (opcion < 1 || opcion > 6);
+		return opcion;
+	}
+
 	public static void main(String[] args) {
 		System.out.println("kk");
 	}
