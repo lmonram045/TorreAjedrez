@@ -113,38 +113,55 @@ public class Torre {
                     }
                     posicionDestino = new Posicion(fila, columnaDestino);
                     break;
-                /*case ENROQUE_CORTO:
-                    filaDestino = this.posicion.getFila();
-                    columnaDestino = 'f';
-                    if (filaDestino == 1 || filaDestino == 8) {
-                        posicionDestino = new Posicion(filaDestino, columnaDestino);
-                    } else {
-                        throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
-                    }
-                    break;
-                case ENROQUE_LARGO:
-                    filaDestino = this.posicion.getFila();
-                    columnaDestino = 'd';
-                    if (filaDestino == 1 || filaDestino == 8) {
-                        posicionDestino = new Posicion(filaDestino, columnaDestino);
-                    } else {
-                        throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
-                    }
-                    break;*/
                 default:
                     throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
             }
-        } catch (IllegalArgumentException e) {
+        } catch (OperationNotSupportedException e) {
             throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
         }
         this.setPosicion(posicionDestino);
     }
 
     /** Método enrocar */
-    public void enrocar(Direccion direccion) {
+    public void enrocar(Direccion direccion) throws OperationNotSupportedException {
         if (direccion == null) {
             throw new NullPointerException("ERROR: La dirección no puede ser nula.");
         }
+
+        Posicion posicionDestino;
+        int fila;
+        char columna;
+
+        try {
+            switch (direccion) {
+                case ENROQUE_CORTO:
+                    fila = this.posicion.getFila();
+                    columna = this.posicion.getColumna();
+                    // Controlo que esté en la fila y columnas correctas, el enroque corto solo se puede hacer en la columna 'h'
+                    if ((fila == 1 || fila == 8) && columna == 'h') {
+                        columna = 'f';
+                    } else {
+                        throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
+                    }
+                    posicionDestino = new Posicion(fila, columna); // SonarLint me dice que posicionDestino nunca es accedida, pero no entiendo porqué, lo dejo para comprobar al final.
+                    break;
+                case ENROQUE_LARGO:
+                    fila = this.posicion.getFila();
+                    columna = this.posicion.getColumna();
+                    if ((fila == 1 || fila == 8) && columna == 'a') {
+                        columna = 'd';
+                    } else {
+                        throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
+                    }
+                    posicionDestino = new Posicion(fila, columna); // Pasa igual que en enroque corto, sonarLint me dice que no se usa.
+                    break;
+                default:
+                    throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
+            }
+        } catch (OperationNotSupportedException e) {
+            throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
+        }
+
 
     }
     // ------------------------ Getters y Setters -----------------------------------------------------------------
