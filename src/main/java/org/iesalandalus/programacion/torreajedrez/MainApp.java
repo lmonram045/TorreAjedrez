@@ -37,6 +37,27 @@ public class MainApp {
 		return opcion;
 	}
 
+	private static Color elegirColor() {
+		int opcion;
+		System.out.println("||==========================================================||");
+		System.out.println("||                      Elija un color                      ||");
+		System.out.println("||==========================================================||");
+		System.out.println("||                                                          ||");
+		System.out.println("|| 1. Blanco                                                ||");
+		System.out.println("|| 2. Negro                                                 ||");
+		System.out.println("||                                                          ||");
+		System.out.println("||==========================================================||");
+		do {
+			opcion = Entrada.entero();
+		} while (opcion != 1 && opcion != 2);
+
+		if (opcion == 1) {
+			return Color.BLANCO;
+		} else {
+			return Color.NEGRO;
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("kk");
 	}
