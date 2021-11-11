@@ -66,14 +66,14 @@ public class MainApp {
 		System.out.println("||           Elija la columna inicial            ||");
 		System.out.println("||===============================================||");
 		System.out.println("||                                               ||");
-		System.out.println("|| c. Columna 'C'                                ||");
-		System.out.println("|| f. Columna 'F'                                ||");
+		System.out.println("|| a. Columna 'a'                                ||");
+		System.out.println("|| h. Columna 'h'                                ||");
 		System.out.println("||                                               ||");
 		System.out.println("||===============================================||");
 
 		do {
 			columna = Entrada.caracter();
-		} while (columna != 'c' && columna != 'f');
+		} while (columna != 'a' && columna != 'h');
 		return columna;
 	}
 
@@ -170,7 +170,7 @@ public class MainApp {
 				if (torre != null) {
 					mover();
 				} else {
-					System.out.println("No hay ningúna torre creada.");
+					System.out.println("No hay ninguna torre creada.");
 				}
 				break;
 			default:
