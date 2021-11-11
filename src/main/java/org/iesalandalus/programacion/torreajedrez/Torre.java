@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.torreajedrez;
 
 import javax.naming.OperationNotSupportedException;
+import java.util.Objects;
 
 public class Torre {
     // Como no aparecen estos atributos en el diagrama, presupongo que son privados.
@@ -186,5 +187,21 @@ public class Torre {
     // ------------------------- Fin de Getters y Setters ----------------------------------------------------------
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Torre torre = (Torre) o;
+        return color == torre.color && posicion.equals(torre.posicion);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, posicion);
+    }
+
+    @Override
+    public String toString() {
+        return posicion + ", " + "color=" + color;
+    }
 }
