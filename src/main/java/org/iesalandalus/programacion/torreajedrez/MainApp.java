@@ -58,6 +58,23 @@ public class MainApp {
 		}
 	}
 
+	private static char elegirColumnaInicial() {
+		char columna;
+		System.out.println("||===============================================||");
+		System.out.println("||           Elija la columna inicial            ||");
+		System.out.println("||===============================================||");
+		System.out.println("||                                               ||");
+		System.out.println("|| c. Columna 'C'                                ||");
+		System.out.println("|| f. Columna 'F'                                ||");
+		System.out.println("||                                               ||");
+		System.out.println("||===============================================||");
+
+		do {
+			columna = Entrada.caracter();
+		} while (columna != 'c' && columna != 'f');
+		return columna;
+	}
+
 	public static void main(String[] args) {
 		System.out.println("kk");
 	}
