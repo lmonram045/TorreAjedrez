@@ -60,17 +60,28 @@ public class Torre {
         int fila;
         char columna;
         char columnaDestino;
+        Color color = getColor();
         try {
             switch (direccion) {
                 case ARRIBA:
                     filaDestino = this.posicion.getFila();
                     columna = this.posicion.getColumna();
-                    // Controlo la fila hacia arriba para controlar que no se sale
-                    for (int i = 1; i <= pasos; i++) {
-                        if (filaDestino < 8) {
-                            filaDestino++;
-                        } else {
-                            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    // Controlo la fila hacia arriba para controlar que no se sale, segun el color sea blanco o negro
+                    if (color == Color.BLANCO) {
+                        for (int i = 1; i <= pasos; i++) {
+                            if (filaDestino < 8) {
+                                filaDestino++;
+                            } else {
+                                throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                            }
+                        }
+                    } else {
+                        for (int i = 1; i <= pasos; i++) {
+                            if (filaDestino > 1) {
+                                filaDestino--;
+                            } else {
+                                throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                            }
                         }
                     }
                     posicionDestino = new Posicion(filaDestino, columna);
@@ -79,11 +90,21 @@ public class Torre {
                     filaDestino = this.posicion.getFila();
                     columna = this.posicion.getColumna();
                     // Controlo la fila hacia abajo para controlar que no se sale
-                    for (int i = 1; i <= pasos; i++) {
-                        if (filaDestino > 1) {
-                            filaDestino--;
-                        } else {
-                            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    if (color == Color.BLANCO) {
+                        for (int i = 1; i <= pasos; i++) {
+                            if (filaDestino > 1) {
+                                filaDestino--;
+                            } else {
+                                throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                            }
+                        }
+                    } else {
+                        for (int i = 1; i <= pasos; i++) {
+                            if (filaDestino < 8) {
+                                filaDestino++;
+                            } else {
+                                throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                            }
                         }
                     }
                     posicionDestino = new Posicion(filaDestino, columna);
@@ -91,27 +112,49 @@ public class Torre {
                 case DERECHA:
                     fila = this.posicion.getFila();
                     columnaDestino = this.posicion.getColumna();
-                    // Controlo la columna hacia la derecha para controlar que no se sale
-                    for (int i = 1; i <= pasos; i++) {
-                        if (columnaDestino < 'h') {
-                            columnaDestino++;
-                        } else {
-                            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    // Controlo la columna hacia la derecha para controlar que no se sale comprobando el color
+                    if (color == Color.BLANCO) {
+                        for (int i = 1; i <= pasos; i++) {
+                            if (columnaDestino < 'h') {
+                                columnaDestino++;
+                            } else {
+                                throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                            }
+                        }
+                    } else {
+                        for (int i = 1; i <= pasos; i++) {
+                            if (columnaDestino > 'a') {
+                                columnaDestino--;
+                            } else {
+                                throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                            }
                         }
                     }
+
                     posicionDestino = new Posicion(fila, columnaDestino);
                     break;
                 case IZQUIERDA:
                     fila = this.posicion.getFila();
                     columnaDestino = this.posicion.getColumna();
-                    // Controlo la columna hacia la izquierda para controlar que no se salga
-                    for (int i = 1; i <= pasos; i++) {
-                        if (columnaDestino > 'a') {
-                            columnaDestino--;
-                        } else {
-                            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    // Controlo la columna hacia la izquierda para controlar que no se salga comprobando el color
+                    if (color == Color.BLANCO) {
+                        for (int i = 1; i <= pasos; i++) {
+                            if (columnaDestino > 'a') {
+                                columnaDestino--;
+                            } else {
+                                throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                            }
+                        }
+                    } else {
+                        for (int i = 1; i <= pasos; i++) {
+                            if (columnaDestino < 'h') {
+                                columnaDestino++;
+                            } else {
+                                throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                            }
                         }
                     }
+
                     posicionDestino = new Posicion(fila, columnaDestino);
                     break;
                 default:
@@ -144,7 +187,7 @@ public class Torre {
                     } else {
                         throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
                     }
-                    posicionDestino = new Posicion(fila, columna); // SonarLint me dice que posicionDestino nunca es accedida, pero no entiendo porqué, lo dejo para comprobar al final.
+                    posicionDestino = new Posicion(fila, columna);
                     break;
                 case ENROQUE_LARGO:
                     fila = this.posicion.getFila();
@@ -154,7 +197,7 @@ public class Torre {
                     } else {
                         throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
                     }
-                    posicionDestino = new Posicion(fila, columna); // Pasa igual que en enroque corto, sonarLint me dice que no se usa.
+                    posicionDestino = new Posicion(fila, columna);
                     break;
                 default:
                     throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
@@ -163,7 +206,7 @@ public class Torre {
             throw new OperationNotSupportedException("ERROR: Movimiento de enroque no válido.");
         }
 
-
+        this.setPosicion(posicionDestino);
     }
     // ------------------------ Getters y Setters -----------------------------------------------------------------
     private void setPosicion(Posicion posicion) {
