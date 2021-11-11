@@ -104,6 +104,12 @@ public class MainApp {
 		System.out.println("Se creó la torre por defecto en la posición 8h, de color negro.");
 	}
 
+	private static void crearTorreColor() {
+		Color color = elegirColor();
+		torre = new Torre(color);
+		System.out.println("Se creó la torre por defecto a partir del color.");
+	}
+
 	public static void main(String[] args) {
 		System.out.println("kk");
 	}
