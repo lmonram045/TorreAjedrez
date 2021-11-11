@@ -155,6 +155,29 @@ public class MainApp {
 		System.out.println("Movimiento realizado correctamente");
 	}
 
+	private static void ejecutarOpcion(int opcion) throws OperationNotSupportedException {
+		switch (opcion) {
+			case 1:
+				crearTorreDefecto();
+				break;
+			case 2:
+				crearTorreColor();
+				break;
+			case 3:
+				crearTorreColorColumna();
+				break;
+			case 4:
+				if (torre != null) {
+					mover();
+				} else {
+					System.out.println("No hay ningúna torre creada.");
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("kk");
 	}
