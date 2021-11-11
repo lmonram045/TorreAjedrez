@@ -99,6 +99,11 @@ public class MainApp {
 		return opcion;
 	}
 
+	private static void crearTorreDefecto() {
+		torre = new Torre();
+		System.out.println("Se creó la torre por defecto en la posición 8h, de color negro.");
+	}
+
 	public static void main(String[] args) {
 		System.out.println("kk");
 	}
