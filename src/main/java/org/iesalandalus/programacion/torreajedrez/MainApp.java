@@ -75,6 +75,21 @@ public class MainApp {
 		return columna;
 	}
 
+	private static void mostrarMenuDirecciones() {
+		System.out.println("||=============================================||");
+		System.out.println("||             Menú de direcciones             ||");
+		System.out.println("||=============================================||");
+		System.out.println("||                                             ||");
+		System.out.println("|| 1. ↑                                        ||");
+		System.out.println("|| 2. ↓                                        ||");
+		System.out.println("|| 3. ←                                        ||");
+		System.out.println("|| 4. →                                        ||");
+		System.out.println("|| 5. Enroque corto                            ||");
+		System.out.println("|| 6. Enroque largo                            ||");
+		System.out.println("||                                             ||");
+		System.out.println("||=============================================||");
+	}
+
 	public static void main(String[] args) {
 		System.out.println("kk");
 	}
