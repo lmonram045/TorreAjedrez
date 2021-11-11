@@ -110,6 +110,13 @@ public class MainApp {
 		System.out.println("Se creó la torre por defecto a partir del color.");
 	}
 
+	private static void crearTorreColorColumna() {
+		char columna = elegirColumnaInicial();
+		Color color = elegirColor();
+		torre = new Torre(color, columna);
+		System.out.println("Se creó una torre a partir del color y columna seleccionados.");
+	}
+
 	public static void main(String[] args) {
 		System.out.println("kk");
 	}
